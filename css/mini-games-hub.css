@@ -1,0 +1,170 @@
+/* ================================================================
+   mini-games-hub.css — 「小游戏」板块外壳
+   视觉沿用 wuziqi.css 的陪伴页玻璃拟态 + 深色渐变风格
+   （.companion-page / .companion-bg-container / .companion-overlay
+     由 companion.css 提供，这里只补板块自己的部分）
+   ================================================================ */
+
+/* ── 全屏外壳 ──────────────────────────────────────────────── */
+.mg-page {
+    background: #111;
+}
+.mg-bg {
+    background:
+        radial-gradient(ellipse at 18% 12%, rgba(var(--accent-color-rgb, 197,164,126), 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 88% 82%, rgba(96, 165, 250, 0.16) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(167, 139, 250, 0.10) 0%, transparent 60%),
+        linear-gradient(165deg, #15141c 0%, #1b1a29 50%, #12121a 100%);
+}
+
+.mg-scroll {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 92px 16px 78px;
+    scrollbar-width: none;
+}
+.mg-scroll::-webkit-scrollbar { display: none; }
+
+/* ── 标题 ──────────────────────────────────────────────────── */
+.mg-title {
+    text-align: center;
+    margin-bottom: 6px;
+    animation: mg-rise 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+.mg-title h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(var(--accent-color-rgb, 197,164,126), 0.35);
+}
+.mg-title p {
+    margin: 8px 0 0;
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.42);
+}
+.mg-title .mg-rule {
+    width: 46px;
+    height: 2px;
+    margin: 12px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-color-rgb, 197,164,126), 0.85), transparent);
+}
+
+/* ── 六宫格 ────────────────────────────────────────────────── */
+.mg-grid {
+    width: 100%;
+    max-width: 460px;
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.mg-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    padding: 20px 12px 16px;
+    border-radius: 18px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: linear-gradient(160deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+    transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.25s ease, border-color 0.25s ease;
+    animation: mg-rise 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+/* 卡面右上角的一层柔光 */
+.mg-card::before {
+    content: '';
+    position: absolute;
+    inset: -40% -30% auto -30%;
+    height: 120%;
+    background: radial-gradient(ellipse at 50% 0%, var(--mg-glow, rgba(var(--accent-color-rgb,197,164,126),0.22)) 0%, transparent 62%);
+    pointer-events: none;
+}
+.mg-card:active { transform: scale(0.96); }
+@media (hover: hover) {
+    .mg-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(var(--accent-color-rgb, 197,164,126), 0.42);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.36);
+    }
+}
+
+.mg-ico {
+    position: relative;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    line-height: 1;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+.mg-name {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+.mg-desc {
+    position: relative;
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.40);
+    text-align: center;
+    padding: 0 2px;
+}
+
+/* 五子棋那张排在第一，用主色高亮一下，跟原来入口一致 */
+.mg-card.is-featured {
+    border-color: rgba(var(--accent-color-rgb, 197,164,126), 0.30);
+}
+
+/* ── 底部提示 ──────────────────────────────────────────────── */
+.mg-hint {
+    margin-top: 22px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.30);
+    text-align: center;
+    animation: mg-rise 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.35s both;
+}
+
+@keyframes mg-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 尊重系统的「减少动态效果」 */
+@media (prefers-reduced-motion: reduce) {
+    .mg-title, .mg-card, .mg-hint { animation: none; }
+}
+
+/* 小屏 */
+@media (max-width: 360px) {
+    .mg-grid { gap: 10px; }
+    .mg-card { padding: 16px 8px 14px; border-radius: 16px; }
+    .mg-ico { width: 46px; height: 46px; font-size: 22px; }
+    .mg-name { font-size: 13px; }
+}

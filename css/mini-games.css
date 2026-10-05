@@ -1,0 +1,1472 @@
+/* ==========================================================
+ * wz2 mini-games CSS (extracted verbatim from the mochi inline <style>)
+ *   coop-minesweeper  ms-*
+ *   fishing           fish-*  + cc-toast
+ *   memory match      mgm-*
+ *   link-up           lk-*
+ *   match-3           m3-*
+ *   shared            tg-bubble / poke-card / pong-overlay / snake-*
+ * ========================================================== */
+#tc-mask, #call-mask, #feed-notice-panel, #poke-card, #emoji-panel, #chat-ask-panel, #qa-mask {
+overscroll-behavior:contain;
+}
+.ms-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; }
+.ms-label { font-size:12px; color:var(--muted); }
+.ms-val { font-size:13px; font-weight:700; color:var(--ink); min-width:40px; text-align:right; }
+.ms-range {
+width:100%; margin:6px 0; -webkit-appearance:none; appearance:none;
+height:4px; border-radius:99px; background:var(--track-bg); outline:none;
+}
+.ms-range::-webkit-slider-thumb {
+-webkit-appearance:none; appearance:none; width:22px; height:22px; border-radius:50%;
+background:var(--btn-bg); border:3px solid var(--card-bg); box-shadow:0 1px 5px rgba(0,0,0,.3); cursor:pointer;
+}
+.ms-range::-moz-range-thumb {
+width:16px; height:16px; border-radius:50%; background:var(--btn-bg);
+border:3px solid var(--card-bg); box-shadow:0 1px 5px rgba(0,0,0,.3); cursor:pointer;
+}
+.ms-preview {
+display:flex; align-items:center; gap:12px; margin-top:10px;
+padding:10px 14px; background:var(--static-bg); border-radius:14px;
+}
+.ms-preview[hidden] { display:none; }
+.ms-ico {
+width:52px; height:52px; flex-shrink:0;
+background:var(--glass-bg); border:1px solid var(--card-border);
+box-shadow:0 3px 8px rgba(0,0,0,.08);
+}
+.ms-preview-txt { font-size:12px; color:var(--muted); }
+.poke-card-scroll, .tc-body, .mg-list, .emoji-groups,
+.card-list, .mem-scroll, .cal-scroll, .div-scroll, .gs-scroll,
+.chat-search, .fav-list, .feed-list, .mail-list, .qa-body,
+.sm-list, .music-list, .feed-notice-panel, .feed-comment-panel,
+.emoji-panel, #com-sticker-list, .chat-draft-items {
+overscroll-behavior: contain;
+}
+#chat-call-panel .poke-card-scroll { min-height:0; max-height:none; }
+#chat-rps-panel .poke-card-scroll { min-height:0; max-height:none; }
+.poke-card {
+position:absolute; top:auto; bottom:calc(96px + var(--mochi-safe-bottom,env(safe-area-inset-bottom,0px))); left:18px; right:18px;
+height:auto; max-height:48%;
+display:flex; flex-direction:column;
+background:rgba(255,255,255,.97);
+border:1px solid rgba(0,0,0,.1);
+border-top-left-radius:22px; border-top-right-radius:22px;
+border-bottom-left-radius:14px; border-bottom-right-radius:14px;
+box-shadow:0 12px 32px rgba(0,0,0,.14);
+z-index:70; padding:14px 16px 14px;
+}
+.poke-card[hidden] { display:none; }
+.poke-card-head {
+display:flex; align-items:center; justify-content:space-between;
+flex-wrap:wrap; row-gap:6px; font-size:15px; font-weight:700; margin-bottom:10px;
+}
+.poke-card-head > span { white-space:nowrap; }
+.poke-card-head-actions {
+display:flex; align-items:center; gap:8px; margin-left:auto;
+}
+.poke-card-head-actions .chat-search-new { padding:5px 12px; }
+.poke-card-close {
+width:28px; height:28px; border-radius:50%; border:none; cursor:pointer;
+background:rgba(0,0,0,.06); color:#666; font-size:14px;
+display:flex; align-items:center; justify-content:center;
+}
+.poke-card-scroll { flex:1; overflow-y:auto; scrollbar-width:none; -ms-overflow-style:none; min-height:60px; max-height:40vh; padding:2px; }
+.poke-card-scroll::-webkit-scrollbar { display:none; }
+#ck-panel .poke-card-scroll { min-height:0; max-height:none; }
+#chat-decision-panel .poke-card-scroll { min-height:0; max-height:none; }
+.poke-card-ops {
+display:flex; gap:6px; flex-shrink:0; align-items:center; margin-left:auto;
+}
+.poke-card-op {
+width:26px; height:26px; border-radius:50%; border:none; cursor:pointer;
+background:rgba(0,0,0,.06); color:#999; font-size:12px; flex-shrink:0;
+display:flex; align-items:center; justify-content:center;
+-webkit-tap-highlight-color:transparent; font-family:inherit; padding:0;
+}
+.poke-card-op svg { width:13px; height:13px; }
+.poke-card-op:active { background:rgba(0,0,0,.12); }
+.emoji-head .poke-card-close { margin-left:10px; }
+#cc-toast {
+position:fixed; left:50%; bottom:calc(120px + var(--mochi-safe-bottom,env(safe-area-inset-bottom,0px))); transform:translate(-50%, 10px);
+background:rgba(17,17,17,.9); color:#fff; font-size:13px;
+padding:10px 18px; border-radius:99px; z-index:99;
+opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease;
+max-width:80vw; text-align:center;
+}
+#cc-toast.show { opacity:1; transform:translate(-50%, 0); }
+#cc-toast.show {
+animation: ccToastAutoHide 2.6s ease forwards;
+}
+#cc-toast {
+white-space:pre-line;
+line-height:1.45;
+max-height:min(60vh, 420px);
+overflow:hidden;
+overflow-wrap:break-word;
+}
+.period-pms-line { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+.pms-badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; }
+.pms-badge.pms-none { background:#f0f0f0; color:#888; }
+.pms-badge.pms-light { background:#e8f5e9; color:#2e7d32; }
+.pms-badge.pms-mid { background:#fff3da; color:#c47d12; }
+.pms-badge.pms-heavy { background:#fde2ee; color:#c44a78; }
+.pms-tip { font-size:11px; color:var(--muted,#666); }
+.fish-total {
+display:flex; gap:8px; margin-bottom:12px;
+}
+.fish-total .ft-item {
+flex:1; text-align:center; padding:10px 6px; font-size:12px; color:var(--muted);
+background:rgba(255,255,255,.92); border:1px solid rgba(0,0,0,.1);
+border-radius:12px;
+}
+.fish-total .ft-item b { display:block; font-size:17px; color:var(--ink); margin-bottom:2px; }
+.pong-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; background:rgba(15,20,32,.88); border-radius:10px; z-index:2; overflow:hidden; padding:4px 8px; }
+.pong-overlay[hidden] { display:none; }
+.pong-overlay-title { font-size:18px; font-weight:700; color:#fff; text-align:center; }
+.pong-overlay-body { font-size:12px; color:rgba(255,255,255,.85); text-align:center; line-height:1.5; }
+.pong-overlay-btn { padding:8px 24px; border-radius:20px; border:none; background:#3a7fd5; color:#fff; font-size:14px; font-weight:600; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.pong-overlay-btn:active { transform:scale(.96); }
+.pong-overlay-btns { display:flex; gap:10px; }
+.pong-overlay-btn2 { background:rgba(255,255,255,.16); }
+#chat-pong-panel.pong-fs .poke-card-scroll { max-height:none; flex:1; overflow:hidden; display:flex; flex-direction:column; padding:0; }
+#chat-pong-panel.pong-fs .poke-card-head { background:transparent; color:#fff; border-bottom-color:rgba(255,255,255,.12); padding:12px 18px; flex-shrink:0; }
+#chat-pong-panel.pong-fs .poke-card-head b { color:#fff; font-size:20px; }
+#chat-pong-panel.pong-fs .poke-card-close { color:#fff; font-size:24px; }
+#chat-pong-panel.pong-fs .pong-overlay-title { font-size:28px; }
+#chat-pong-panel.pong-fs .pong-overlay-body { font-size:16px; }
+#chat-pong-panel.pong-fs .pong-overlay-btn { padding:12px 36px; font-size:20px; border-radius:24px; }
+#chat-brick-panel .poke-card-scroll { min-height:0; max-height:none; }
+#chat-brick-panel.brick-fs .poke-card-scroll { max-height:none; flex:1; overflow:hidden; display:flex; flex-direction:column; padding:0; }
+#chat-brick-panel.brick-fs .poke-card-head { background:transparent; color:#fff; border-bottom-color:rgba(255,255,255,.12); padding:10px 16px; flex-shrink:0; }
+#chat-brick-panel.brick-fs .poke-card-head b { color:#fff; font-size:19px; }
+#chat-brick-panel.brick-fs .poke-card-close { color:#fff; font-size:24px; }
+#chat-brick-panel.brick-fs .snake-icon-btn { background:rgba(255,255,255,.12); color:#fff; width:42px; height:42px; font-size:20px; }
+#chat-snake-panel .poke-card-scroll { min-height:0; max-height:none; }
+#chat-snake-panel .poke-card-head { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.snake-head-actions { display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:5px; margin-left:auto; flex:0 1 auto; min-width:0; }
+.snake-icon-btn { width:32px; height:32px; border-radius:50%; border:none; background:rgba(0,0,0,.06); font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; line-height:1; color:var(--ink); }
+.snake-icon-btn:active { transform:scale(.92); }
+.snake-icon-btn.game-prop-off { opacity:.38; }
+.m3-mode-pending { color:#e8533d; font-weight:700; }
+.m3-prop-live { background:rgba(232,83,61,.12); color:#e8533d; border-radius:10px; padding:1px 8px; font-weight:700; }
+#chat-snake-panel.snake-fs .poke-card-scroll { overflow:hidden auto; padding:min(2vh,2vw) 8px; }
+#chat-snake-panel.snake-fs .poke-card-head { border-bottom-color:rgba(0,0,0,.08); padding:8px 14px; }
+#chat-snake-panel.snake-fs .poke-card-head span { font-size:min(4.5vw, 3.6vh); }
+#chat-snake-panel.snake-fs .snake-icon-btn { width:min(9vw, 7vh); height:min(9vw, 7vh); font-size:min(4vw, 3.2vh); }
+#chat-snake-panel.snake-fs .poke-card-scroll { display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:min(2vh,2vw); padding:min(2vh,2vw) min(3vw,3vh); flex:1; }
+.fish-combo-line { font-size:11px; color:#b7791f; padding:6px 2px 2px; letter-spacing:.3px; }
+#chat-c4-panel .poke-card-scroll { min-height:0; max-height:none; }
+#chat-ms-panel { height:auto; max-height:86%; }
+#chat-ms-panel .poke-card-scroll { min-height:0; max-height:none; }
+.ms-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:6px 4px 4px; width:100%; }
+.ms-topbar { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:352px; padding:0 2px; min-height:20px; }
+.ms-hearts { font-size:14px; letter-spacing:2px; line-height:1; }
+.ms-prog { font-size:11.5px; color:var(--muted,#777); font-variant-numeric:tabular-nums; }
+.ms-stage { position:relative; width:100%; max-width:352px; margin:0 auto; min-height:170px; }
+.ms-board { display:grid; gap:3px; margin:0 auto; background:rgba(127,127,127,.12); border:1px solid rgba(127,127,127,.15); border-radius:10px; padding:5px; user-select:none; -webkit-user-select:none; touch-action:manipulation; width:max-content; }
+.ms-cell { position:relative; box-sizing:border-box; border-radius:6px; background:linear-gradient(150deg, rgba(255,255,255,.92), rgba(0,0,0,.07)); box-shadow:inset 0 -2px 3px rgba(0,0,0,.13), inset 0 2px 2px rgba(255,255,255,.6), 0 1px 2px rgba(0,0,0,.08); cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:700; line-height:1; -webkit-tap-highlight-color:transparent; }
+.ms-cell.ms-open { background:rgba(127,127,127,.10); box-shadow:none; cursor:default; }
+.ms-boom { background:#f2d4cd !important; }
+.ms-fyou { background:linear-gradient(150deg, #fdeae2, #f9d3c4); }
+.ms-fta { background:linear-gradient(150deg, #fdf3d9, #f7e3ad); }
+.ms-face { pointer-events:none; transform:translateZ(0); }
+.ms-face.ms-pop { animation:mspop .22s ease-out; }
+.ms-n1 { color:#3a7fd5; }
+.ms-n2 { color:#2e8b57; }
+.ms-n3 { color:#d9534f; }
+.ms-n4 { color:#7a4fd9; }
+.ms-n5 { color:#b7791f; }
+.ms-n6 { color:#2aa198; }
+.ms-n7 { color:#666; }
+.ms-n8 { color:#999; }
+.ms-status { min-height:20px; font-size:13.5px; font-weight:600; color:var(--ink,#333); text-align:center; width:100%; }
+.ms-talk { width:100%; max-width:352px; padding:0 4px; }
+.ms-talk[hidden] { display:none; }
+.ms-talk-bubble { display:inline-flex; flex-wrap:wrap; gap:2px 6px; align-items:baseline; max-width:100%; padding:7px 11px; border-radius:14px; border-top-left-radius:4px; background:var(--card-bg,#fff); color:var(--ink,#222); border:1px solid var(--card-border,rgba(0,0,0,.08)); font-size:13px; line-height:1.55; word-break:break-word; overflow-wrap:anywhere; box-shadow:0 1px 4px rgba(0,0,0,.05); animation:mstalkin .22s ease-out; }
+.ms-talk-name { font-weight:700; color:var(--accent,#8b7cf6); white-space:nowrap; }
+.ms-foot { font-size:11.5px; color:var(--muted,#666); text-align:center; line-height:1.7; width:100%; }
+.ms-shake { animation:msshake .26s ease-in-out; }
+.ms-cur { font-size:12px; font-weight:700; color:#ffd76a; background:rgba(255,215,106,.12); border:1px solid rgba(255,215,106,.4); border-radius:14px; padding:4px 12px; margin-bottom:6px; flex-shrink:0; }
+.ms-overlay { border-radius:12px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; }
+.ms-diffs { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:8px; }
+.ms-diff { font-size:12px; font-family:inherit; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.12); color:rgba(255,255,255,.85); border-radius:14px; padding:6px 12px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.ms-diff.on { background:#e8533d; border-color:#e8533d; color:#fff; font-weight:700; }
+.ms-tip { font-size:12.5px; color:rgba(255,255,255,.88); line-height:1.8; text-align:center; margin-bottom:2px; }
+.ms-note { font-size:11px; color:rgba(255,255,255,.6); text-align:center; margin-bottom:4px; }
+.ms-quote { font-size:11.5px; color:rgba(255,255,255,.62); font-style:normal; }
+.snake-icon-btn.ms-mode-on { background:#fde8e0; color:#e8533d; }
+.ms-cell.ms-boom .ms-face.ms-pop { animation:msboompop .42s cubic-bezier(.2,.8,.3,1.3); }
+.ms-board.ms-quake { animation:msquake .45s ease-in-out; }
+#ms-overlay:not([hidden]) > * { animation:msovin .24s ease both; }
+#ms-overlay:not([hidden]) > :nth-child(2) { animation-delay:45ms; }
+#ms-overlay:not([hidden]) > :nth-child(3) { animation-delay:90ms; }
+.ms-cell.ms-born { animation:msborn .26s ease-out both; }
+.ms-tr { box-shadow:0 0 9px 2px rgba(255,196,70,.45); }
+.ms-tr .ms-face.ms-pop { animation:mstreasure .5s cubic-bezier(.2,.8,.3,1.4); }
+.ms-cell.ms-reveal { background:#efe0d5 !important; }
+.ms-hearts.ms-hurt { display:inline-block; animation:mshurt .5s ease-out; }
+#chat-fish-panel { height:auto; max-height:86%; }
+#chat-fish-panel .poke-card-scroll { min-height:0; max-height:none; }
+.fish-wrap { display:flex; flex-direction:column; gap:8px; padding:2px 2px 4px; }
+.fish-scene {
+position:relative; height:148px; border-radius:16px; overflow:hidden;
+background:linear-gradient(180deg,#a8d8f0 0%,#d6effc 52%,#eaf7ff 58%,#eaf7ff 100%);
+}
+.fish-sky { position:absolute; left:0; right:0; top:0; height:58%; }
+.fish-sky::before {
+content:''; position:absolute; right:14px; top:10px; width:22px; height:22px; border-radius:50%;
+background:radial-gradient(circle at 38% 35%, #fff3b0, #ffd75e 70%);
+box-shadow:0 0 12px rgba(255,215,94,.55);
+}
+.fish-sky::after {
+content:''; position:absolute; left:16px; top:16px; width:46px; height:13px; border-radius:99px;
+background:rgba(255,255,255,.85); box-shadow:62px 12px 0 -3px rgba(255,255,255,.7);
+}
+.fish-water {
+position:absolute; left:0; right:0; bottom:0; height:42%;
+background:linear-gradient(180deg,#79c4de,#4f97bd);
+border-top:2px solid rgba(255,255,255,.65); overflow:hidden;
+}
+.fish-water::before {
+content:''; position:absolute; inset:-2px -40px;
+background:repeating-linear-gradient(105deg, rgba(255,255,255,.13) 0 12px, rgba(255,255,255,0) 12px 30px);
+animation:fishwave 5s linear infinite;
+}
+.fish-persons { position:absolute; left:0; right:0; top:0; height:58%;
+display:flex; justify-content:space-evenly; align-items:flex-end; }
+.fish-person { position:relative; width:72px; height:54px; transition:opacity .3s, filter .3s, transform .3s; }
+.fish-person::before {
+content:''; position:absolute; left:50%; bottom:21px; width:15px; height:15px; margin-left:-7.5px;
+border-radius:50%; background:#ffd9b8; z-index:1;
+}
+.fish-person::after {
+content:''; position:absolute; left:50%; bottom:3px; width:24px; height:20px; margin-left:-12px;
+border-radius:9px 9px 5px 5px; z-index:1;
+}
+.fish-me::after { background:#6a9ef0; }
+.fish-ta::after { background:#f08bb0; }
+.fish-person-name {
+position:absolute; bottom:-6px; left:50%; transform:translateX(-50%);
+font-size:9.5px; color:#fff; background:rgba(60,90,120,.45);
+padding:1px 8px; border-radius:99px; white-space:nowrap; z-index:2;
+}
+.fish-ta-state {
+position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+font-size:10px; color:#5a7c95; background:rgba(255,255,255,.82);
+padding:2px 8px; border-radius:99px; white-space:nowrap; z-index:3;
+}
+.fish-scene[data-ta="biting"] .fish-ta-state { color:#fff; background:#f2764a; }
+.fish-scene[data-ta="rest"] .fish-ta { opacity:.55; filter:saturate(.55); }
+.fish-scene[data-ta="daze"] .fish-ta { opacity:.85; }
+.fish-scene[data-ta="shift"] .fish-ta { transform:translateX(-8px); }
+.fish-rod {
+position:absolute; bottom:28px; left:30px; width:54px; height:3px; border-radius:2px;
+background:linear-gradient(90deg,#9c7b5e,#7a5b40);
+transform-origin:0 100%; transform:rotate(-30deg);
+transition:transform .25s ease; z-index:0;
+}
+.fish-ta .fish-rod {
+left:auto; right:30px;
+transform-origin:100% 100%; transform:rotate(30deg);
+background:linear-gradient(270deg,#9c7b5e,#7a5b40);
+}
+.fish-scene[data-mine="waiting"] .fish-me .fish-rod,
+.fish-scene[data-ta="waiting"] .fish-ta .fish-rod { }
+.fish-scene[data-mine="biting"] .fish-me .fish-rod { animation:fishrodmine .32s linear infinite; }
+.fish-scene[data-ta="casting"] .fish-ta .fish-rod { transform:rotate(44deg); }
+.fish-scene[data-ta="biting"] .fish-ta .fish-rod { animation:fishrodta .32s linear infinite; }
+.fish-bobber {
+position:absolute; bottom:26%; width:10px; height:15px; z-index:2; display:none;
+border-radius:50%/60% 60% 42% 42%;
+background:linear-gradient(#fff 0 42%, #f05a5a 42%);
+border:1px solid rgba(0,0,0,.18);
+}
+.fish-bobber-mine { left:22%; }
+.fish-bobber-ta { right:22%; }
+.fish-scene[data-mine="waiting"] .fish-bobber-mine,
+.fish-scene[data-ta="waiting"] .fish-bobber-ta,
+.fish-scene[data-ta="casting"] .fish-bobber-ta {
+display:block; animation:fishbobfloat 2.4s ease-in-out infinite;
+}
+.fish-scene[data-mine="biting"] .fish-bobber-mine {
+display:block;
+background:linear-gradient(#cfe8ff 0 42%, #2f6fe0 42%);
+animation:fishbobbite .38s ease-in-out infinite;
+}
+.fish-scene[data-ta="biting"] .fish-bobber-ta {
+display:block;
+background:linear-gradient(#cfe8ff 0 42%, #2f6fe0 42%);
+animation:fishbobbite .38s ease-in-out infinite;
+}
+.fish-status { min-height:18px; font-size:12.5px; color:var(--muted); text-align:center; line-height:1.5; }
+.fish-timing-wrap { display:flex; flex-direction:column; gap:5px; padding:0 4px; }
+.fish-timing-wrap[hidden] { display:none; }
+.fish-timing-label { font-size:11px; color:#b7791f; text-align:center; letter-spacing:.3px; }
+.fish-timing-bar {
+position:relative; height:16px; border-radius:99px; overflow:hidden;
+background:linear-gradient(90deg,#f9b4ab 0%,#fbd3a4 22%,#8ec9f5 38%,#4a9fe8 50%,#8ec9f5 68%,#fbd3a4 82%,#f9b4ab 100%);
+box-shadow:inset 0 1px 3px rgba(0,0,0,.15);
+}
+.fish-timing-good {
+position:absolute; left:38%; width:30%; top:0; bottom:0;
+border-left:2px dashed rgba(255,255,255,.85); border-right:2px dashed rgba(255,255,255,.85);
+background:rgba(255,255,255,.14);
+}
+.fish-timing-cursor {
+position:absolute; top:0; bottom:0; width:4px; margin-left:-2px; border-radius:2px;
+background:#fff; box-shadow:0 0 6px rgba(0,0,0,.35), 0 0 2px #fff;
+}
+.fish-actions { display:flex; gap:10px; padding:0 4px; }
+.fish-btn {
+flex:1; padding:11px 0; border:none; border-radius:14px; font-size:14.5px; font-weight:700;
+font-family:inherit; cursor:pointer; color:#fff;
+background:linear-gradient(135deg,#5aa7e6,#3d7fc4);
+box-shadow:0 3px 8px rgba(61,127,196,.35);
+-webkit-tap-highlight-color:transparent;
+}
+.fish-btn:active { transform:translateY(1px); box-shadow:0 2px 4px rgba(61,127,196,.3); }
+.fish-btn:disabled { opacity:.55; box-shadow:none; }
+.fish-btn[hidden] { display:none; }
+.fish-reel {
+position:relative; background:linear-gradient(135deg,#f2994a,#e8683a);
+box-shadow:0 3px 8px rgba(232,104,58,.35);
+}
+.fish-reel::after {
+content:''; position:absolute; inset:0; border-radius:inherit;
+background:#fff; opacity:0; pointer-events:none;
+animation:fishReelPulse 1s ease-in-out infinite;
+}
+.fish-tabs { display:flex; gap:8px; padding:0 4px; }
+.fish-tab {
+flex:1; padding:8px 0; border:none; border-radius:12px; font-size:12.5px; font-weight:600;
+font-family:inherit; cursor:pointer;
+background:rgba(90,140,190,.1); color:#6b89a5;
+-webkit-tap-highlight-color:transparent;
+}
+.fish-tab.sel {
+background:linear-gradient(135deg,#5aa7e6,#3d7fc4); color:#fff;
+box-shadow:0 2px 6px rgba(61,127,196,.3);
+}
+.fish-page { min-height:80px; }
+.fish-sub { font-size:13px; font-weight:800; color:var(--ink); margin:2px 4px 8px; }
+.fish-subhead { display:flex; align-items:center; gap:6px; margin:10px 4px 6px;
+font-size:11.5px; font-weight:700; color:#6b89a5; }
+.fish-subhead::after { content:''; flex:1; height:1px; background:rgba(107,137,165,.25); }
+.fish-row {
+display:flex; align-items:center; gap:9px; padding:8px 11px; margin-bottom:6px;
+border-radius:12px; background:rgba(127,160,190,.09); font-size:13px;
+}
+.fish-ico { font-size:19px; flex-shrink:0; }
+.fish-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+font-weight:600; color:var(--ink); }
+.fish-gift-tag {
+font-style:normal; font-size:9.5px; color:#e05a8a; background:rgba(240,139,176,.16);
+border-radius:99px; padding:1px 6px; margin-left:5px; vertical-align:1px;
+}
+.fish-cnt { font-size:12px; color:var(--muted); flex-shrink:0; }
+.fish-price { font-size:12.5px; font-weight:700; color:#3d9a5f; flex-shrink:0; font-variant-numeric:tabular-nums; }
+.fish-empty { padding:16px 0 10px; text-align:center; font-size:12px; color:rgba(0,0,0,.35); }
+.fish-sellbar {
+display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px;
+padding:9px 11px; border-radius:12px; background:rgba(90,140,190,.08);
+font-size:12px; color:#5a7c95;
+}
+.fish-sellbar b { color:#e8963a; font-size:13px; }
+.fish-capnote { margin-top:6px; text-align:center; font-size:10.5px; color:var(--muted); font-variant-numeric:tabular-nums; }
+.fish-sell {
+flex-shrink:0; padding:8px 16px; border:none; border-radius:99px;
+font-size:12.5px; font-weight:700; font-family:inherit; cursor:pointer; color:#fff;
+background:linear-gradient(135deg,#f2b04a,#e88a3a);
+box-shadow:0 2px 6px rgba(232,138,58,.35);
+-webkit-tap-highlight-color:transparent;
+}
+.fish-sell:active { transform:translateY(1px); }
+.fish-dex-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.fish-dex-item {
+position:relative; display:flex; align-items:center; gap:8px; padding:9px 11px;
+border-radius:12px; background:rgba(127,160,190,.09);
+font-size:12.5px; color:rgba(0,0,0,.32);
+}
+.fish-dex-item.got { color:var(--ink); font-weight:600; background:rgba(143,212,139,.15); }
+.fish-dex-ico { font-size:17px; flex-shrink:0; }
+.fish-dex-item:not(.got) .fish-dex-ico { opacity:.55; }
+.fish-dex-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.fish-dex-check {
+position:absolute; top:-4px; right:-4px; width:17px; height:17px; border-radius:50%;
+background:#5fbf72; color:#fff; font-size:11px; line-height:17px; text-align:center;
+box-shadow:0 1px 3px rgba(0,0,0,.2);
+}
+.fish-dex-foot { margin-top:10px; text-align:center; font-size:11.5px; color:rgba(0,0,0,.4); }
+.fish-exch {
+flex-shrink:0; padding:6px 12px; border:none; border-radius:99px;
+font-size:11.5px; font-weight:700; font-family:inherit; cursor:pointer;
+color:#8a6d1f; background:rgba(240,200,100,.25);
+-webkit-tap-highlight-color:transparent;
+}
+.fish-exch:active { background:rgba(240,200,100,.45); }
+.fish-gift-ts { flex-shrink:0; font-size:10.5px; color:rgba(0,0,0,.35); }
+.fish-splash {
+position:absolute; left:50%; top:42%; z-index:5; font-size:21px;
+pointer-events:none; animation:fishrise 1.15s ease-out forwards;
+}
+[data-theme="dark"] .fish-scene { background:linear-gradient(180deg,#233246 0%,#2c4258 52%,#33495e 58%,#33495e 100%); }
+[data-theme="dark"] .fish-sky::before { background:radial-gradient(circle at 38% 35%, #f5f2e8, #d9d4c2 70%); box-shadow:0 0 10px rgba(240,240,255,.18); }
+[data-theme="dark"] .fish-sky::after { background:rgba(255,255,255,.35); box-shadow:62px 12px 0 -3px rgba(255,255,255,.26); }
+[data-theme="dark"] .fish-water { background:linear-gradient(180deg,#2b5d78,#1f4258); border-top-color:rgba(255,255,255,.3); }
+[data-theme="dark"] .fish-water::before { background:repeating-linear-gradient(105deg, rgba(255,255,255,.07) 0 12px, rgba(255,255,255,0) 12px 30px); }
+[data-theme="dark"] .fish-person-name { background:rgba(20,30,40,.6); }
+[data-theme="dark"] .fish-ta-state { color:#bcd6e8; background:rgba(20,30,40,.75); }
+[data-theme="dark"] .fish-row, [data-theme="dark"] .fish-dex-item { background:rgba(255,255,255,.06); }
+[data-theme="dark"] .fish-dex-item.got { background:rgba(143,212,139,.12); }
+[data-theme="dark"] .fish-dex-item:not(.got) { color:rgba(255,255,255,.32); }
+[data-theme="dark"] .fish-empty, [data-theme="dark"] .fish-dex-foot { color:rgba(255,255,255,.38); }
+[data-theme="dark"] .fish-sellbar { background:rgba(255,255,255,.05); color:#9db8cc; }
+[data-theme="dark"] .fish-tab { background:rgba(255,255,255,.07); color:#9db8cc; }
+[data-theme="dark"] .fish-tab.sel { color:#fff; }
+[data-theme="dark"] .fish-gift-ts { color:rgba(255,255,255,.35); }
+#chat-memory-panel .poke-card-scroll { min-height:0; max-height:none; }
+.mgm-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:6px 4px 4px; }
+.mgm-info { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; flex-wrap:wrap; }
+.mgm-turn { font-size:13px; font-weight:700; color:var(--ink); background:rgba(127,127,127,.1); border-radius:14px; padding:4px 12px; }
+.mgm-turn:empty { display:none; }
+#chat-memory-panel .poke-card-head > span { white-space:nowrap; font-size:14px; }
+.mgm-chem, .mgm-coin { font-size:12px; color:var(--muted); }
+.mgm-stage { position:relative; width:100%; max-width:360px; margin:0 auto; min-height:200px; }
+.mgm-card { position:relative; border:none; padding:0; background:transparent; cursor:pointer; perspective:620px; border-radius:10px; -webkit-tap-highlight-color:transparent; }
+.mgm-card::before { content:''; display:block; padding-top:136%; }
+.mgm-in { position:absolute; inset:0; transform-style:preserve-3d; transition:transform .38s cubic-bezier(.4,.2,.2,1); }
+.mgm-card.flipped .mgm-in { transform:rotateY(180deg); }
+.mgm-back, .mgm-face {
+position:absolute; inset:0;
+backface-visibility:hidden; -webkit-backface-visibility:hidden;
+border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.mgm-back {
+background:linear-gradient(145deg,#3a3a3a 0%,#1a1a1a 58%,#2b2b2b 100%);
+box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16), 0 2px 5px rgba(0,0,0,.22);
+}
+.mgm-back i { font-style:normal; color:rgba(255,255,255,.94); font-size:calc(var(--mgm-fs,27px) * .62); text-shadow:0 1px 2px rgba(0,0,0,.25); }
+.mgm-face {
+transform:rotateY(180deg);
+background:rgba(255,255,255,.96); border:1px solid rgba(0,0,0,.08);
+box-shadow:0 1px 3px rgba(0,0,0,.08);
+font-size:var(--mgm-fs,27px); line-height:1;
+}
+.mgm-card.matched { cursor:default; }
+.mgm-own-p .mgm-face { background:#f4f4f4; box-shadow:inset 0 0 0 2px #1a1a1a; }
+.mgm-own-t .mgm-face { background:#fafafa; box-shadow:inset 0 0 0 2px #bdbdbd; }
+.mgm-card.matched .mgm-in { animation:mgmpop .34s ease-out; }
+.mgm-hint { min-height:18px; font-size:13px; color:var(--muted); text-align:center; }
+[data-theme="dark"] .mgm-turn { background:rgba(255,255,255,.08); }
+[data-theme="dark"] .mgm-chem, [data-theme="dark"] .mgm-coin, [data-theme="dark"] .mgm-hint { color:#9aa3ad; }
+[data-theme="dark"] .mgm-face { background:var(--dark-card-92); border-color:var(--dark-border); }
+[data-theme="dark"] .mgm-own-p .mgm-face { background:rgba(255,255,255,.16); box-shadow:inset 0 0 0 2px #e8e8e8; }
+[data-theme="dark"] .mgm-own-t .mgm-face { background:rgba(255,255,255,.05); box-shadow:inset 0 0 0 2px #8f959c; }
+#chat-memory-panel .pong-overlay { background:rgba(22,22,22,.92); }
+#chat-memory-panel .pong-overlay-btn { background:#1a1a1a; border:1.5px solid rgba(255,255,255,.82); color:#fff; }
+#chat-memory-panel .pong-overlay-btn:active { background:#000; border-color:rgba(255,255,255,.6); }
+#chat-memory-panel .pong-overlay-btn2 { background:rgba(255,255,255,.16); border:1.5px solid rgba(255,255,255,.55); color:#fff; }
+.fish-stats { margin:8px 4px 0; padding:9px 11px; border-radius:12px; background:rgba(90,140,190,.08); font-size:11.5px; color:#5a7c95; text-align:center; }
+.fish-stats b { color:#e8963a; font-weight:700; }
+.fish-keep { display:flex; align-items:center; gap:2px; font-size:10px; color:#9aa; cursor:pointer; flex-shrink:0; margin-right:2px; -webkit-tap-highlight-color:transparent; }
+.fish-keep input { width:13px; height:13px; margin:0; accent-color:#5aa7e6; }
+.fish-keep span { line-height:1; }
+[data-theme="dark"] .fish-stats { background:rgba(255,255,255,.06); color:#bcd6e8; }
+.fish-cook-row { display:flex; align-items:center; gap:8px; padding:8px 11px; margin-bottom:6px; border-radius:12px; background:rgba(127,160,190,.09); font-size:13px; }
+.fish-cook-row.done { background:rgba(143,212,139,.12); }
+.fish-cook-tag { font-style:normal; font-size:9.5px; color:#3d9a5f; background:rgba(143,212,139,.2); border-radius:99px; padding:1px 6px; margin-left:5px; vertical-align:1px; }
+.fish-cook-bar { flex:1; height:8px; border-radius:99px; background:rgba(90,140,190,.15); overflow:hidden; min-width:40px; }
+.fish-cook-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,#f2b04a,#e8683a); transition:width .3s; }
+.fish-cook-btn, .fish-cook-sell, .fish-cook-send, .fish-eat-btn {
+flex-shrink:0; padding:6px 11px; border:none; border-radius:99px; font-size:11.5px; font-weight:700;
+font-family:inherit; cursor:pointer; color:#fff; -webkit-tap-highlight-color:transparent;
+}
+.fish-cook-btn { background:linear-gradient(135deg,#f2b04a,#e88a3a); box-shadow:0 2px 5px rgba(232,138,58,.3); }
+.fish-cook-sell { background:linear-gradient(135deg,#5aa7e6,#3d7fc4); box-shadow:0 2px 5px rgba(61,127,196,.3); }
+.fish-cook-send { background:linear-gradient(135deg,#f08bb0,#e05a8a); box-shadow:0 2px 5px rgba(224,90,138,.3); margin-left:4px; }
+.fish-eat-btn { background:linear-gradient(135deg,#8ec9f5,#5aa7e6); box-shadow:0 2px 5px rgba(90,167,230,.3); }
+.fish-cook-btn:active, .fish-cook-sell:active, .fish-cook-send:active, .fish-eat-btn:active { transform:translateY(1px); }
+[data-theme="dark"] .fish-cook-row { background:rgba(255,255,255,.05); }
+[data-theme="dark"] .fish-cook-row.done { background:rgba(143,212,139,.1); }
+[data-theme="dark"] .fish-cook-bar { background:rgba(255,255,255,.1); }
+.poke-card.game-fs { position:fixed !important; top:0 !important; right:0 !important; bottom:0 !important; left:0 !important;
+z-index:9999; border-radius:0; max-height:none !important;
+height:100vh;
+background:#fff; overscroll-behavior:none;
+padding-top:max(env(safe-area-inset-top, 0px), 8px);
+padding-bottom:max(var(--mochi-safe-bottom, env(safe-area-inset-bottom, 0px)), 8px);
+}
+.phone.game-fs-active .page { z-index:1000; }
+.poke-card.game-fs .poke-card-scroll { flex:1; max-height:none; min-height:0; }
+[data-theme="dark"] .poke-card.game-fs { background:#15151a; }
+#chat-memory-panel.game-fs .poke-card-scroll { display:flex; flex-direction:column; overflow:hidden; }
+#chat-memory-panel.game-fs .mgm-wrap { flex:1; min-height:0; }
+#chat-memory-panel.game-fs .mgm-stage { max-width:none; width:100%; flex:1; min-height:0; display:flex; align-items:center; justify-content:center; }
+#chat-linkup-panel.game-fs { padding-left:10px; padding-right:10px; }
+#chat-linkup-panel.game-fs .poke-card-scroll { display:flex; flex-direction:column; overflow:hidden; }
+#chat-linkup-panel.game-fs .lk-wrap { flex:1; min-height:0; }
+#chat-linkup-panel.game-fs .lk-stage { flex:1; min-height:0; }
+.lk-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:6px 4px 4px; }
+.lk-info { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; font-size:12px; color:var(--muted); }
+.lk-stage { position:relative; width:100%; min-height:190px; display:flex; justify-content:center; align-items:center; }
+.lk-board { position:relative; display:grid; gap:3px; user-select:none; -webkit-user-select:none; touch-action:manipulation; }
+.lk-tile { display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#ffffff,#eef1f6); border:1px solid rgba(0,0,0,.1); border-radius:9px; box-shadow:0 1px 2px rgba(0,0,0,.08); cursor:pointer; -webkit-tap-highlight-color:transparent; line-height:1; transition:opacity .18s, transform .18s; }
+[data-theme="dark"] .lk-tile { background:linear-gradient(180deg,#3a4048,#2c3138); border-color:rgba(255,255,255,.12); }
+.lk-tile.lk-gone { opacity:0; transform:scale(.6); pointer-events:none; }
+.lk-tile.lk-sel { outline:2px solid #5b8ff9; transform:translateY(-2px); }
+.lk-tile.lk-hint { outline:2px solid #ffb347; animation:pairgame-blink .6s ease-in-out 3; }
+.lk-tile.lk-shake { animation:pairgame-shake .3s; }
+.lk-status { min-height:20px; font-size:13px; color:var(--muted); text-align:center; }
+.lk-pathline { position:absolute; left:0; top:0; width:100%; height:100%; overflow:visible; pointer-events:none; z-index:3; }
+.lk-pathline polyline { fill:none; stroke:#5b8ff9; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; opacity:.9; stroke-dasharray:1; stroke-dashoffset:1; animation:lkpath .42s ease forwards; }
+.lk-tile.lk-pop { animation:lkpop .26s ease forwards; pointer-events:none; }
+.lk-tile.lk-shufout { animation:lkshufout .18s ease-in forwards; }
+.lk-tile.lk-shufin { animation:lkshufin .22s ease-out backwards; }
+.lk-tile.lk-born { animation:lkborn .22s ease-out backwards; }
+.m3-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:6px 4px 4px; }
+.m3-info { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; font-size:12px; color:var(--muted); }
+.m3-stage { position:relative; width:100%; min-height:190px; display:flex; justify-content:center; align-items:center; }
+.m3-board { position:relative; user-select:none; -webkit-user-select:none; touch-action:manipulation; }
+.m3-tile { position:absolute; top:0; left:0; display:flex; align-items:center; justify-content:center; background:rgba(127,127,127,.09); border-radius:10px; cursor:pointer; -webkit-tap-highlight-color:transparent; line-height:1; transition:transform .18s ease; }
+.m3-glyph { display:block; }
+.m3-noanim .m3-tile { transition:none !important; }
+.m3-tile.m3-born .m3-glyph { animation:m3-born .24s ease; }
+[data-theme="dark"] .m3-tile { background:rgba(255,255,255,.08); }
+.m3-tile.m3-sel { outline:2px solid #5b8ff9; }
+.m3-tile.m3-sel .m3-glyph { transform:scale(1.1); }
+.m3-tile.m3-hint { outline:2px solid #ffb347; animation:pairgame-blink .6s ease-in-out 3; }
+.m3-tile.m3-shake .m3-glyph { animation:pairgame-shake .3s; }
+.m3-tile.m3-pop { pointer-events:none; }
+.m3-tile.m3-pop .m3-glyph { animation:m3-popout .22s ease forwards; }
+.m3-glyph.m3-deal { animation:m3-born .24s ease backwards; }
+.m3-glyph.m3-shuf { animation:m3-shufscale .32s ease; }
+.m3-float { position:absolute; z-index:3; font-weight:700; color:#ff7aa2; text-shadow:0 1px 2px rgba(0,0,0,.15); pointer-events:none; transform:translate(-50%,-50%); animation:m3-rise .72s ease-out forwards; }
+.m3-board.m3-quake { animation:m3-quake .32s ease; }
+.m3-status { min-height:20px; font-size:13px; color:var(--muted); text-align:center; }
+.au-bids .pong-overlay-btn { flex:1; padding-left:2px; padding-right:2px; }
+.au-bids .pong-overlay-btn2 { background:rgba(0,0,0,.07); color:var(--ink,#222); }
+[data-theme="dark"] .au-bids .pong-overlay-btn2 { background:rgba(255,255,255,.16); color:#f0f0f0; }
+#au-overlay.au-ov-fs .pong-overlay-body { flex:1; min-height:0; overflow-y:auto; }
+#au-intro .pong-overlay-btn, #au-help .pong-overlay-btn { min-width:210px; }
+#au-intro .pong-overlay-btns { flex-direction:column; align-items:center; }
+#chat-auction-panel:not(.game-fs) { height:auto; min-height:min(68%, 560px); max-height:68%; }
+#chat-auction-panel .poke-card-scroll { min-height:0; max-height:none; }
+.tg-bubble { position:absolute; top:6px; left:50%; transform:translate(-50%,-6px); max-width:82%; background:rgba(20,20,24,.86); color:#fff; font-size:12px; line-height:1.5; padding:5px 11px; border-radius:12px; z-index:6; opacity:0; pointer-events:none; transition:opacity .22s, transform .22s; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; box-shadow:0 3px 10px rgba(0,0,0,.22); }
+.tg-bubble.show { opacity:1; transform:translate(-50%,0); }
+.m3-tile.m3-bomb { box-shadow:inset 0 0 0 2px #ff9d4d; }
+.m3-tile.m3-line { box-shadow:inset 0 0 0 2px #6fb7ff; }
+.au-ed-foot .pong-overlay-btn { min-width:0; flex:1; }
+#chat-gift-panel .poke-card-scroll { max-height: none; }
+[data-theme="dark"] .poke-card { background:var(--dark-card-97); border-color:var(--dark-border); }
+[data-theme="dark"] .poke-card-head { border-bottom-color:var(--dark-border); }
+[data-theme="dark"] .poke-card-close { background:var(--dark-hover); color:var(--ink); }
+[data-theme="dark"] .poke-card-op { background:rgba(255,255,255,.12); color:var(--dark-soft); }
+[data-theme="dark"] .poke-card-op:active { background:rgba(255,255,255,.2); }
+[data-theme="dark"] .pms-badge.pms-none { background:var(--dark-hover); color:#999; }
+[data-theme="dark"] .pms-badge.pms-light { background:rgba(76,175,80,.15); color:#81c784; }
+[data-theme="dark"] .pms-badge.pms-mid { background:rgba(245,166,35,.15); color:#ffb74d; }
+[data-theme="dark"] .pms-badge.pms-heavy { background:rgba(232,90,143,.16); color:#f48fb1; }
+[data-theme="dark"] .fish-total .ft-item { background:var(--dark-card-92); border-color:var(--dark-border); }
+[data-theme="dark"] .pong-sound,
+[data-theme="dark"] .pong-icon-btn,
+[data-theme="dark"] .snake-icon-btn { background:var(--dark-hover); }
+[data-theme="dark"] #chat-snake-panel.snake-fs .poke-card-head { border-bottom-color:rgba(255,255,255,.1); }
+@supports (height: 100dvh) {
+}
+@media (max-width: 900px) @supports (height: 100dvh) {
+}
+@media (max-width: 900px) {
+}
+@supports (height: 100dvh) {
+}
+@supports (height: 100dvh) {
+}
+@media (display-mode: fullscreen) @supports (height: 100dvh) {
+}
+@media (display-mode: fullscreen) {
+}
+@supports (height: 100dvh) {
+}
+@supports (height: 100dvh) {
+}
+@supports (height: 100dvh) {
+}
+@media (display-mode: standalone) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 900px) {
+}
+@media (display-mode: fullscreen) {
+}
+@media (max-width: 900px) {
+}
+@supports (height: 100dvh) {
+}
+@media (display-mode: fullscreen) {
+}
+@media (orientation: landscape) and (min-width: 1024px) {
+}
+@media (max-width: 900px) {
+}
+@media (min-width: 901px) {
+}
+@media (max-width: 900px) {
+}
+@media (hover:hover) {
+}
+@media (hover: none) and (pointer: coarse) {
+}
+@media (min-width:1000px) {
+}
+@media (min-width:1250px) {
+}
+@media (min-height:950px) {
+}
+@media (min-width:1000px) and (min-height:950px) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 480px) {
+}
+@media (max-height:560px) {
+  .poke-card { max-height:76%; }
+}
+@media (max-height:700px) {
+}
+@media (min-width: 901px) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (max-width: 480px) {
+}
+@media (min-width: 901px) {
+}
+@supports (height: 100dvh) {
+}
+@supports (height: 100dvh) {
+}
+@media (orientation:landscape) {
+  #chat-brick-panel.brick-fs .poke-card-head { padding:6px 14px; }
+  #chat-brick-panel.brick-fs .poke-card-head b { font-size:16px; }
+  #chat-brick-panel.brick-fs .snake-icon-btn { width:36px; height:36px; font-size:17px; }
+}
+@supports (height: 100dvh) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (hover:hover) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (hover:hover) {
+  .ms-cell:not(.ms-open):hover { filter:brightness(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ms-face.ms-pop, .ms-shake { animation:none; }
+  .ms-cell.ms-boom .ms-face.ms-pop, .ms-board.ms-quake, #ms-overlay:not([hidden]) > * { animation:none; }
+  .ms-cell.ms-born, .ms-tr .ms-face.ms-pop, .ms-hearts.ms-hurt { animation:none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fish-water::before { animation:none; }
+  .fish-bobber { animation:none !important; }
+  .fish-reel, .fish-reel::after { animation:none; }
+  .fish-scene[data-mine="biting"] .fish-me .fish-rod,
+.fish-scene[data-ta="biting"] .fish-ta .fish-rod { animation:none; }
+  .fish-splash { animation-duration:.01s; opacity:0; }
+}
+@media (max-height:700px) {
+  .mgm-wrap { gap:5px; }
+  .mgm-card::before { padding-top:120%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mgm-in { transition-duration:0s !important; }
+  .mgm-card.matched .mgm-in { animation:none; }
+}
+@supports (height: 100dvh) {
+  .poke-card.game-fs { height:min(var(--mochi-ios-h, 100dvh), 100dvh); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .m3-tile { transition-duration:.05s; }
+  .m3-tile .m3-glyph { animation-duration:.05s !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (max-height:500px) {
+  #chat-auction-panel:not(.game-fs) { min-height:82%; max-height:82%; }
+}
+@supports (height: 100dvh) {
+}
+@media (min-width: 901px) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@media (prefers-reduced-motion: reduce) {
+}
+@keyframes ccToastAutoHide {
+0%, 88% { opacity:1; transform:translate(-50%, 0); }
+100% { opacity:0; transform:translate(-50%, 10px); }
+}
+@keyframes mspop { 0% { transform:scale(.5); opacity:.25; } 100% { transform:scale(1); opacity:1; } }
+@keyframes mstalkin { 0% { opacity:0; transform:translateY(4px); } 100% { opacity:1; transform:translateY(0); } }
+@keyframes msshake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-3px); } 50% { transform:translateX(3px); } 75% { transform:translateX(-2px); } }
+@keyframes msboompop { 0% { transform:scale(.4); opacity:.3; } 55% { transform:scale(1.6); opacity:1; } 100% { transform:scale(1); } }
+@keyframes msquake { 0%,100% { transform:translateX(0); } 18% { transform:translateX(-6px); } 38% { transform:translateX(6px); } 58% { transform:translateX(-4px); } 78% { transform:translateX(4px); } }
+@keyframes msovin { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+@keyframes msborn { from { opacity:0; transform:scale(.55); } to { opacity:1; transform:scale(1); } }
+@keyframes mstreasure { 0% { transform:scale(.3) rotate(-14deg); opacity:.2; } 55% { transform:scale(1.35) rotate(4deg); opacity:1; } 100% { transform:scale(1); } }
+@keyframes mshurt { 0% { transform:scale(1.45); filter:brightness(1.7); } 100% { transform:scale(1); filter:none; } }
+@keyframes fishwave { from { transform:translateX(0); } to { transform:translateX(36px); } }
+@keyframes fishrodmine { 0%,100% { transform:rotate(-24deg); } 50% { transform:rotate(-34deg); } }
+@keyframes fishrodta { 0%,100% { transform:rotate(24deg); } 50% { transform:rotate(34deg); } }
+@keyframes fishbobfloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+@keyframes fishbobbite { 0%,100% { transform:translateY(0) rotate(-10deg); } 50% { transform:translateY(-5px) rotate(10deg); } }
+@keyframes fishReelPulse { 0%,100% { opacity:0; } 50% { opacity:.14; } }
+@keyframes fishrise {
+0% { opacity:0; transform:translate(-50%,8px) scale(.5); }
+25% { opacity:1; }
+100% { opacity:0; transform:translate(-50%,-30px) scale(1.2); }
+}
+@keyframes mgmpop {
+0% { transform:rotateY(180deg) scale(1); }
+50% { transform:rotateY(180deg) scale(1.09); }
+100% { transform:rotateY(180deg) scale(1); }
+}
+@keyframes lkpath { 0% { stroke-dashoffset:1; opacity:.9; } 60% { stroke-dashoffset:0; opacity:.9; } 100% { stroke-dashoffset:0; opacity:0; } }
+@keyframes lkpop { 0% { transform:scale(1); opacity:1; } 35% { transform:scale(1.16); opacity:1; } 100% { transform:scale(.35); opacity:0; } }
+@keyframes lkshufout { to { transform:scale(.5) rotate(10deg); opacity:0; } }
+@keyframes lkshufin { from { transform:scale(.5) rotate(-10deg); opacity:0; } }
+@keyframes lkborn { from { transform:scale(.3); opacity:0; } }
+@keyframes m3-popout { 0% { transform:scale(1); opacity:1; } 35% { transform:scale(1.25); opacity:.9; } 100% { transform:scale(0); opacity:0; } }
+@keyframes m3-born { 0% { transform:scale(.3); opacity:0; } 100% { transform:scale(1); opacity:1; } }
+@keyframes m3-shufscale { 0% { transform:scale(1); } 45% { transform:scale(.72) rotate(8deg); } 100% { transform:scale(1); } }
+@keyframes m3-rise { 0% { opacity:0; transform:translate(-50%,-30%) scale(.6); } 25% { opacity:1; } 100% { opacity:0; transform:translate(-50%,-170%) scale(1.05); } }
+@keyframes m3-quake { 0%,100% { transform:translate(0,0); } 20% { transform:translate(-3px,2px); } 45% { transform:translate(3px,-2px); } 70% { transform:translate(-2px,1px); } }
+@keyframes pairgame-blink { 50% { outline-color:transparent; } }
+@keyframes pairgame-shake { 25% { transform:translateX(-3px); } 75% { transform:translateX(3px); } }
+
+/* ================================================================
+ * wz2 覆盖段 —— 放在文件最后，用来改掉 mochi 的定位假设
+ * ------------------------------------------------------------
+ * mochi 里 .poke-card 是「聊天页底部吸上来的小卡片」
+ * （position:absolute + bottom:96px + left/right:18px + max-height:48%），
+ * 依赖聊天滚动容器定位。wz2 的小游戏是独立全屏板块，没有聊天滚动容器，
+ * 所以要改成居中浮层。
+ *
+ * 颜色一律不动：上面几百行游戏内部样式都是照着「浅色卡片」写的，
+ * 只改位置/尺寸/层级，别去动配色。
+ * ================================================================ */
+
+/* ================================================================
+ * wz2 覆盖段三 —— 层级修正（重要）
+ * ------------------------------------------------------------
+ * wz2 的板块页 .companion-page 是 z-index:4000，五子棋内部遮罩 4500。
+ * 面板宿主一开始写成 150/160，结果游戏面板虽然「打开」了，
+ * 却整个画在六宫格底下 —— 看起来就是点了没反应。
+ * 宿主必须高于板块页；又不能压过商店/陪伴弹窗(100001+)、
+ * 全局消息横幅和首次启动的引导页(999999)。
+ * ================================================================ */
+
+#mg-game-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 99995;
+    background: rgba(8, 8, 12, 0.62);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: mg-fade-in 0.22s ease both;
+}
+#mg-game-backdrop[hidden] { display: none; }
+
+#mg-game-host {
+    position: fixed;
+    inset: 0;
+    z-index: 99996;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: max(20px, env(safe-area-inset-top, 0px)) 14px max(20px, env(safe-area-inset-bottom, 0px));
+}
+#mg-game-host.is-on { display: flex; }
+
+/* 五个游戏面板共用同一个 class，这里统一改成居中浮层 */
+#mg-game-host .poke-card {
+    position: relative;
+    inset: auto;
+    top: auto; bottom: auto; left: auto; right: auto;
+    transform: none;
+    width: min(96vw, 440px);
+    max-width: 100%;
+    height: auto;
+    max-height: min(84vh, 640px);
+    padding: 14px 15px 15px;
+    z-index: auto;
+    animation: mg-pop-in 0.28s cubic-bezier(0.22, 0.9, 0.28, 1.12) both;
+}
+
+/* 竖屏矮屏（键盘/横屏）时别顶出屏幕 */
+@media (max-height: 560px) {
+    #mg-game-host .poke-card { max-height: 92vh; padding: 11px 12px 12px; }
+    #mg-game-host .poke-card-scroll { max-height: 62vh; }
+}
+
+/* 动画 */
+@keyframes mg-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes mg-pop-in {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+    #mg-game-backdrop, #mg-game-host .poke-card { animation: none; }
+}
+
+/* ================================================================
+ * wz2 覆盖段二 —— 关掉 mochi 的「心意币」残留 UI
+ * ------------------------------------------------------------
+ * 钱包全局（giftWalletChange 等）本来就没提供，钱也发不出去；
+ * 但记忆翻牌顶栏那颗金币 chip 是无条件渲染的，会一直显示
+ * 「心意币 +0」，属于误导。wz2 没有这个货币，直接藏掉。
+ * ================================================================ */
+
+#mg-game-host .mgm-coin { display: none !important; }
+#mg-game-host .memory-res-coin { display: none !important; }
+
+/* ================================================================
+ * wz2 覆盖段四 —— 修「按钮被裁掉点不到」
+ * ------------------------------------------------------------
+ * mochi 里合作扫雷的 .ms-stage 是 min-height:170px，开始/结算浮层
+ * 正好塞得下。wz2 把面板改成居中浮层后高度变紧，浮层内容有 227px，
+ * 超出 170px 的部分被 .ms-overlay 自己滚走了 —— 于是「开始探索」
+ * 按钮落在可点区域之外，看着有按钮、点下去没反应。
+ * 这里把有浮层时的舞台撑到浮层高度；对不支持 :has() 的浏览器
+ * 上面那条静态兜底也生效，不会退化成点不到。
+ * ================================================================ */
+
+#mg-game-host .ms-stage { min-height: 234px; }
+#mg-game-host .ms-stage:not(:has(.pong-overlay:not([hidden]))) { min-height: 170px; }
+
+/* ================================================================
+ * wz2 覆盖段五 —— 可点性收尾
+ * ------------------------------------------------------------
+ * 1) 六宫格整体抬到 z-index 9500：wz2 的朋友圈通知弹窗是 9000，
+ *    开着小游戏时它飘在板块上会吃掉点击（卡片点不动）。
+ *    9500 仍然低于商店/陪伴弹窗(100001+)和引导页(999999)。
+ * 2) 浮层按钮吸底：万一内容还是比舞台高（结算页统计很长），
+ *    按钮也不会被推出可点区。
+ * 3) 矮屏（横屏手机、小屏）压缩六宫格，让六张卡不用滚就能看全。
+ * ================================================================ */
+
+#minigames-page { z-index: 9500; }
+
+/* 结算/开始浮层里的操作条吸在底部，永远点得到 */
+#mg-game-host .pong-overlay-btns,
+#mg-game-host .pong-start-ctrl {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+}
+#mg-game-host .pong-overlay-btns {
+    background: rgba(15, 20, 32, 0.94);
+    border-radius: 8px;
+    padding: 4px 0 2px;
+}
+
+/* 矮屏：缩小留白与图标，六张卡一屏放得下 */
+@media (max-height: 720px) {
+    #minigames-page .mg-scroll { padding: 74px 14px 58px; }
+    #minigames-page .mg-title p { display: none; }
+    #minigames-page .mg-title { margin-bottom: 0; }
+    #minigames-page .mg-grid { margin-top: 14px; gap: 10px; }
+    #minigames-page .mg-card { padding: 13px 8px 12px; gap: 7px; border-radius: 15px; }
+    #minigames-page .mg-ico { width: 42px; height: 42px; font-size: 20px; }
+    #minigames-page .mg-name { font-size: 13px; }
+    #minigames-page .mg-desc { font-size: 10px; }
+    #minigames-page .mg-hint { margin-top: 14px; }
+}
+
+/* 很矮（横屏）：只留卡片，去掉描述文字 */
+@media (max-height: 520px) {
+    #minigames-page .mg-scroll { padding: 62px 12px 46px; }
+    #minigames-page .mg-desc { display: none; }
+    #minigames-page .mg-card { padding: 10px 6px; }
+    #minigames-page .mg-title h2 { font-size: 18px; }
+}
+
+/* ================================================================
+ * wz2 覆盖段六 —— 补回抽取时漏掉的 .memory-board 规则
+ * ------------------------------------------------------------
+ * 记忆翻翻乐的棋盘靠 CSS 的 display:grid + gap 排版，
+ * 非全屏时 JS 会把 board 的内联 width 清掉，完全依赖这条规则。
+ * mochi 原文：
+ *   .memory-board { display:grid; gap:7px; user-select:none;
+ *                   -webkit-user-select:none; touch-action:manipulation; }
+ *   @media(...) { .memory-board { gap:5px; } }
+ * 漏掉它 → .mgm-wrap 居中列布局把棋盘压成 0 宽，卡片全是 0x0，
+ * 看得见说明文字但一张牌都点不动。
+ * ================================================================ */
+#mg-game-host .memory-board {
+    display: grid;
+    gap: 7px;
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+@media (max-width: 380px) {
+    #mg-game-host .memory-board { gap: 5px; }
+}
+
+/* ================================================================
+ * wz2 覆盖段七 —— 棋盘可视区高度
+ * ------------------------------------------------------------
+ * mochi 的 .poke-card-scroll 默认 max-height:40vh，
+ * 消消乐 8x8 棋盘需要 413px，40vh 只有 301px —— 最后一行
+ * 必须滚动才够得着（虽然能点到，但看着像被吃掉）。
+ * 面板本身有 max-height:min(84vh,640px)，空间是够的，这里放宽到 66vh。
+ * ================================================================ */
+#mg-game-host .poke-card-scroll { max-height: min(66vh, 620px); }
+#mg-game-host .poke-card.game-fs .poke-card-scroll { max-height: none; }
+
+/* ================================================================
+ * wz2 覆盖段八 —— 钓鱼「今日收获」操作条吸底
+ * ------------------------------------------------------------
+ * 卖鱼条在 .poke-card-scroll 里的最后一行，鱼一多内容变高，
+ * 它就被顶到折叠线以下，必须滚动才点得到（钓鱼最主要的操作）。
+ * 改成 sticky 吸底，并补不透明底色（原来的 rgba(90,140,190,.08)
+ * 是半透明的，吸住之后底下的鱼会透出来）。
+ * ================================================================ */
+#mg-game-host #chat-fish-panel .poke-card-scroll {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+#mg-game-host .fish-sellbar {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    margin-top: auto;
+    background: #f4f8fb;
+    box-shadow: 0 -6px 12px -6px rgba(0, 0, 0, .12);
+}
+[data-theme="dark"] #mg-game-host .fish-sellbar {
+    background: #1c2530;
+    box-shadow: 0 -6px 12px -6px rgba(0, 0, 0, .5);
+}
+
+/* ================================================================
+ * wz2 覆盖段九 —— 五子棋棋盘要盖在六宫格之上
+ * ------------------------------------------------------------
+ * 六宫格为了压住朋友圈通知弹窗(9000)提到了 9500，
+ * 而 #wuziqi-page 是 .companion-page(4000)，
+ * 从六宫格直接开棋盘时棋盘会被六宫格盖住 —— 点不到、看不见。
+ * 把棋盘提到 9600：仍在商店/陪伴弹窗(100001+)与引导页(999999)之下。
+ * ================================================================ */
+#wuziqi-page { z-index: 9600; }
+
+/* ================================================================
+ * wz2 覆盖段十 —— 六宫格小游戏的「互相邀请 / 认输 / 中途退出」
+ * ------------------------------------------------------------
+ * 视觉基调完全沿用陪伴板块：
+ *   · 邀请等待页 = companion.js 的 #companion-inviting-overlay 结构
+ *   · 来电式邀请 = companion.js 的 #companion-incoming-overlay 结构
+ *     （脉动光圈 + 拒绝/接受 两个大圆按钮）
+ *   · 局中控制条 / 认输二次确认 = 陪伴板块同款深色玻璃卡片
+ * ================================================================ */
+
+/* ── 共用色板（跟 .companion-transition 一致） ─────────────── */
+.mg-inviting-overlay,
+.mg-incoming-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99998;
+    background: rgba(15, 15, 20, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: companionFadeIn 0.35s ease;
+}
+
+/* ── 用户发起：等待回应 ─────────────────────────────────── */
+.mg-inviting-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+    padding: 24px;
+    max-width: 300px;
+}
+
+.mg-inviting-title {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.mg-inviting-game {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--accent-color, #c5a47e);
+}
+
+.mg-inviting-av {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mg-inviting-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(var(--accent-color-rgb, 197, 164, 126), 0.5);
+    animation: companionPulseRing 1.6s ease-out infinite;
+}
+
+.mg-inviting-av-img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 1;
+    font-size: 34px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.mg-inviting-av-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mg-inviting-dots {
+    display: flex;
+    gap: 7px;
+    margin-top: 2px;
+}
+
+.mg-inviting-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-color, #c5a47e);
+    animation: companionDot 1.1s step-end infinite;
+}
+
+.mg-inviting-dots span:nth-child(2) { animation-delay: 0.15s; }
+.mg-inviting-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+.mg-inviting-wait {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.5px;
+}
+
+.mg-inviting-cancel {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 22px;
+    padding: 0;
+}
+
+.mg-inviting-cancel > div,
+.mg-inviting-cancel > span {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── 梦角发起：来电式邀请 ───────────────────────────────── */
+.mg-incoming-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.mg-incoming-av {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mg-incoming-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(var(--accent-color-rgb, 197, 164, 126), 0.5);
+    animation: companionPulseRing 1.6s ease-out infinite;
+}
+
+.mg-incoming-ring.second {
+    inset: -14px;
+    border-color: rgba(var(--accent-color-rgb, 197, 164, 126), 0.3);
+    animation-delay: 0.5s;
+}
+
+.mg-incoming-av-img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 1;
+    font-size: 34px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.mg-incoming-av-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mg-incoming-name {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.mg-incoming-status {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mg-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-color, #c5a47e);
+    animation: companionDot 1.1s step-end infinite;
+}
+
+.mg-incoming-quote {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 280px;
+    margin-top: 4px;
+}
+
+.mg-incoming-quote i {
+    color: var(--accent-color, #c5a47e);
+    font-size: 18px;
+}
+
+.mg-incoming-quote span {
+    font-size: 14px;
+}
+
+.mg-incoming-btns {
+    display: flex;
+    gap: 44px;
+    margin-top: 26px;
+}
+
+.mg-btn-reject,
+.mg-btn-accept {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.mg-btn-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+    font-size: 22px;
+    padding: 0;
+}
+
+.mg-btn-circle.reject {
+    background: linear-gradient(135deg, #ff5252, #c62828);
+    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.45);
+}
+
+.mg-btn-circle.accept {
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.45);
+}
+
+.mg-btn-reject:active .mg-btn-circle,
+.mg-btn-accept:active .mg-btn-circle {
+    transform: scale(0.92);
+}
+
+.mg-btn-reject > span,
+.mg-btn-accept > span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.48);
+    font-weight: 500;
+}
+
+/* ── 局中控制条（认输 / 退出） ───────────────────────── */
+.mg-social-bar {
+    position: fixed;
+    left: 50%;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    z-index: 99990;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px 8px 14px;
+    border-radius: 999px;
+    background: rgba(20, 20, 26, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    animation: companionPopIn 0.3s ease;
+    max-width: calc(100vw - 24px);
+}
+
+.mg-bar-who {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--accent-color, #c5a47e);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.mg-bar-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    white-space: nowrap;
+}
+
+.mg-bar-btn:active {
+    transform: scale(0.94);
+}
+
+.mg-bar-btn.forfeit {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.mg-bar-btn.quit {
+    background: linear-gradient(135deg, #ff5252, #c62828);
+    box-shadow: 0 4px 14px rgba(255, 82, 82, 0.35);
+}
+
+/* ── 认输 / 退出的二次确认 ────────────────────────────── */
+.mg-confirm {
+    position: fixed;
+    inset: 0;
+    z-index: 99997;
+    background: rgba(15, 15, 20, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: companionFadeIn 0.2s ease;
+    padding: 20px;
+}
+
+.mg-confirm-card {
+    width: 100%;
+    max-width: 280px;
+    background: rgba(28, 28, 34, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 22px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: companionPopIn 0.25s ease;
+}
+
+.mg-confirm-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.mg-confirm-body {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    line-height: 1.6;
+}
+
+.mg-confirm-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.mg-confirm-no,
+.mg-confirm-yes {
+    flex: 1;
+    padding: 11px 0;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.15s ease;
+}
+
+.mg-confirm-no {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.mg-confirm-yes {
+    background: linear-gradient(135deg, #ff5252, #c62828);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(255, 82, 82, 0.35);
+}
+
+.mg-confirm-no:active,
+.mg-confirm-yes:active {
+    transform: scale(0.96);
+}
+
+/* ── 矮屏收敛：别让控制条挡住游戏底部按钮 ─────────────── */
+@media (max-height: 560px) {
+    .mg-social-bar {
+        bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+        padding: 5px 7px 5px 10px;
+        gap: 7px;
+    }
+    .mg-bar-btn {
+        padding: 6px 11px;
+        font-size: 12px;
+    }
+    .mg-bar-who {
+        font-size: 12px;
+    }
+}
+/* ── 六宫格底部的「邀 TA 一起」按钮组 ───────────────── */
+.mg-invite-row {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mg-invite-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.35);
+    text-align: center;
+}
+
+.mg-invite-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.mg-invite-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 13px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--accent-color-rgb, 197, 164, 126), 0.28);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color, #c5a47e);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+}
+
+.mg-invite-btn:active {
+    transform: scale(0.94);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mg-invite-btn i {
+    font-size: 12px;
+}
+
+@media (max-width: 360px) {
+    .mg-invite-btn {
+        padding: 7px 10px;
+        font-size: 11px;
+    }
+}
