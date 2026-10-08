@@ -4,7 +4,7 @@
  * 保证保存到手机 / 安装到手机后，断网也能全功能使用。
  */
 
-const VERSION = 'wz2-v9';
+const VERSION = 'wz2-v10';
 const CACHE = 'wz2-' + VERSION;
 
 // 站点全部本地资源（相对 sw.js 所在目录解析，可整体挪到任意子目录/域名下）

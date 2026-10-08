@@ -8847,8 +8847,35 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(var(--accent-color-rgb),0.18);
         }
-        .poke-card:active {
+.poke-card:active {
     transform: scale(0.97);
+        }
+
+        /* mini-games.css 里 mochi 的 .poke-card 是 position:absolute 悬浮游戏卡片；
+           拍一拍字卡库复用 .poke-card 做网格卡片，必须重置回静态网格盒，否则全部叠在一起 */
+        .poke-library-grid .poke-card {
+    position: static;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    max-height: none;
+    z-index: auto;
+    flex-direction: row;
+    background: linear-gradient(135deg, rgba(var(--accent-color-rgb),0.13) 0%, rgba(var(--accent-color-rgb),0.05) 60%, rgba(var(--accent-color-rgb),0.1) 100%);
+    border: 1px solid rgba(var(--accent-color-rgb),0.12);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: 0 1px 5px rgba(var(--accent-color-rgb),0.08);
+    padding: 12px;
+        }
+        [data-theme="dark"] .poke-library-grid .poke-card {
+    background: linear-gradient(135deg, rgba(var(--accent-color-rgb),0.18) 0%, rgba(var(--accent-color-rgb),0.07) 60%, rgba(var(--accent-color-rgb),0.14) 100%);
+    border-color: rgba(var(--accent-color-rgb),0.18);
         }
 
         .empty-sticker-tip {
